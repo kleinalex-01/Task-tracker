@@ -1,7 +1,9 @@
-const inputField = document.getElementById("task-input");
-const inputIcon = document.getElementById("submit-icon");
-const grid = document.getElementById("grid-container");
+const inputField = document.querySelector(".task-input");
+const inputIcon = document.querySelector(".submit-icon");
+const grid = document.querySelector(".grid-container");
 const gridItem = document.getElementsByClassName("grid-item");
+const switchButton = document.querySelector(".switch-btn");
+const sun = document.querySelector(".fa-sun");
 
 const addRow = () => {
     const newRow = document.createElement("div");
@@ -35,18 +37,23 @@ const addRow = () => {
 
     inputField.value = "";
 };
-
+const toggleMode = () => {
+    if (document.body.classList.contains("darkmode")) {
+        document.body.classList.remove("darkmode");
+    } else {
+        document.body.classList.add("darkmode");
+    }
+}
 inputField.addEventListener("keydown",function(event) {
     if (event.key === "Enter") {
         let inputValue = inputField.value;
         if (inputValue.length >= 3) {
             addRow();
         } else {
-            alert("bru")
+            alert("Please type in a valid activity!")
         };
     };
 });
-
 inputIcon.addEventListener("click",function() {
     let inputValue = inputField.value;
         if (inputValue.length >= 3) {
@@ -55,5 +62,4 @@ inputIcon.addEventListener("click",function() {
             alert("bru")
         };
 });
-
-
+switchButton.addEventListener("click", toggleMode);
